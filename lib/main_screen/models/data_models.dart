@@ -11,14 +11,12 @@ class university {
 }
 
 getdata() async {
-  var url1 =
-      Uri.https('www.googleapis.com', '/books/v1/volumes', {'q': '{http}'});
-  var response = await http.get(url1);
+  var test = Uri.parse('https://www.breakingbadapi.com/api/characters');
+  var response = await http.get(test);
   if (response.statusCode == 200) {
     var jsonResponse =
         convert.jsonDecode(response.body) as Map<String, dynamic>;
-    var itemCount = jsonResponse['totalItems'];
-    print('Number of books about http: $itemCount.');
+    print(jsonResponse);
   } else {
     print('Request failed with status: ${response.statusCode}.');
   }
