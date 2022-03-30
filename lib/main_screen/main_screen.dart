@@ -11,8 +11,8 @@ class univs extends StatefulWidget {
 }
 
 class _univsState extends State<univs> {
-  final List<String> entries = <String>['A', 'B', 'C'];
   final List<int> colorCodes = <int>[600, 500, 100];
+  final List<String> entries = <String>[];
 
   @override
   void initState() {
@@ -21,40 +21,36 @@ class _univsState extends State<univs> {
     super.initState();
   }
 
+  getdata() async {
+    var test = Uri.parse('https://www.breakingbadapi.com/api/characters');
+    var response = await http.get(test);
+    if (response.statusCode == 200) {
+      var jsonResponse = convert.jsonDecode(response.body);
+      for (var el in jsonResponse) {
+        entries.add(el["name"]);
+        colorCodes.add(50);
+      }
+    } else {
+      print('Request failed with status: ${response.statusCode}.');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("mustapha toma app ")),
-      body: Center(
-          child: Column(
-        children: [
-          Text('haad test api '),
-          FlatButton(
-              onPressed: () {
-                print("hi mustapha ");
-              },
-              child: Text("on musta here")),
-          ListTile(
-            leading: Icon(Icons.facebook, size: 50, color: Colors.blue),
-            title: Text('my first app'),
-            subtitle: Text("yes im mustapha"),
-            trailing: Icon(Icons.person),
-          ),
-          ListView.separated(
-            padding: const EdgeInsets.all(8),
-            itemCount: entries.length,
-            itemBuilder: (BuildContext context, int index) {
-              return Container(
-                height: 50,
-                color: Colors.amber[colorCodes[index]],
-                child: Center(child: Text('Entry ${entries[index]}')),
-              );
-            },
-            separatorBuilder: (BuildContext context, int index) =>
-                const Divider(),
-          )
-        ],
-      )),
-    );
+        appBar: AppBar(title: Text("mustapha koma ")),
+        body: ListView.separated(
+          padding: const EdgeInsets.all(8),
+          itemCount: entries.length,
+          itemBuilder: (BuildContext context, int index) {
+            return Container(
+              height: 50,
+              color: Colors.amber[colorCodes[index]],
+              child: Center(child: Text('Entry ${entries[index]}')),
+            );
+          },
+          separatorBuilder: (BuildContext context, int index) =>
+              const Divider(),
+        ));
   }
 }
