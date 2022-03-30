@@ -21,9 +21,9 @@ class _univsState extends State<univs> {
           Text('haad test api '),
           FlatButton(
               onPressed: () {
-                print('salam alikom mustapha');
+                print("hi");
               },
-              child: Text("on click here")),
+              child: Text("on musta here")),
           ListTile(
             leading: Icon(Icons.facebook, size: 50, color: Colors.blue),
             title: Text('my first app'),
