@@ -12,6 +12,13 @@ class univs extends StatefulWidget {
 
 class _univsState extends State<univs> {
   @override
+  void initState() {
+    getdata();
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("mustapha toma app ")),
@@ -21,7 +28,7 @@ class _univsState extends State<univs> {
           Text('haad test api '),
           FlatButton(
               onPressed: () {
-                print("hi");
+                print("hi mustapha ");
               },
               child: Text("on musta here")),
           ListTile(
