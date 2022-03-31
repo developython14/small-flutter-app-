@@ -82,6 +82,14 @@ class _loginState extends State<login> {
             type: GFButtonType.solid,
             fullWidthButton: true,
           ),
+          GFIconButton(
+            onPressed: () {},
+            icon: Icon(Icons.facebook),
+          ),
+          GFIconButton(
+            onPressed: () {},
+            icon: Icon(Icons.person),
+          ),
         ]),
       ),
     );
