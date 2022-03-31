@@ -38,7 +38,7 @@ class _univsState extends State<univs> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text("mustapha koma ")),
+        appBar: AppBar(title: Text("mustapha belkor ")),
         body: ListView.separated(
           padding: const EdgeInsets.all(8),
           itemCount: entries.length,
