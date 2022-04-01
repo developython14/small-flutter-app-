@@ -9,8 +9,14 @@ class login extends StatefulWidget {
 
 class _loginState extends State<login> {
   final _formKey = GlobalKey<FormState>();
-  String name = 'mus';
+  var name = 'mus';
   var password = 'free';
+
+  Future<void> _savingdata() async {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState.save();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +38,15 @@ class _loginState extends State<login> {
                 children: [
                   TextFormField(
                     decoration: InputDecoration(hintText: 'name'),
+                    onSaved: (text) {
+                      name = text;
+                    },
                   ),
                   TextFormField(
                     decoration: InputDecoration(hintText: 'pass'),
+                    onSaved: (text) {
+                      password = text;
+                    },
                   ),
                   ElevatedButton(
                     onPressed: () {
