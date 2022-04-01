@@ -9,7 +9,7 @@ class login extends StatefulWidget {
 
 class _loginState extends State<login> {
   final _formKey = GlobalKey<FormState>();
-  var name = 'mus';
+  String name = 'mus';
   var password = 'free';
 
   Future<void> _savingdata() async {
