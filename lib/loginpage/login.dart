@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 
 class login extends StatefulWidget {
-  const login({Key? key}) : super(key: key);
-
   @override
   State<login> createState() => _loginState();
 }
 
 class _loginState extends State<login> {
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     double wid = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Container(
         width: wid,
-        color: Color.fromARGB(255, 78, 214, 151),
-        margin: EdgeInsets.all(50.0),
+        color: Color.fromARGB(255, 176, 216, 198),
         child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
           ClipRRect(
               borderRadius: BorderRadius.circular(50),
@@ -61,35 +59,33 @@ class _loginState extends State<login> {
           ),
           SizedBox(height: 25),
           Text("or login using "),
-          GFButton(
-            onPressed: () {},
-            text: "primary",
-            icon: Icon(Icons.facebook),
-            type: GFButtonType.solid,
-            fullWidthButton: true,
-          ),
-          GFButton(
-            onPressed: () {},
-            text: "success",
-            icon: Icon(Icons.facebook),
-            type: GFButtonType.solid,
-            fullWidthButton: true,
-          ),
-          GFButton(
-            onPressed: () {},
-            text: "danger",
-            icon: Icon(Icons.facebook),
-            type: GFButtonType.solid,
-            fullWidthButton: true,
-          ),
-          GFIconButton(
-            onPressed: () {},
-            icon: Icon(Icons.facebook),
-          ),
-          GFIconButton(
-            onPressed: () {},
-            icon: Icon(Icons.person),
-          ),
+          SizedBox(height: 25),
+          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+            GFIconButton(
+              onPressed: () {},
+              icon: Icon(Icons.facebook),
+            ),
+            SizedBox(width: 25),
+            GFIconButton(
+              onPressed: () {},
+              icon: Icon(Icons.web),
+            ),
+            SizedBox(width: 25),
+            GFIconButton(
+              onPressed: () {},
+              icon: Icon(Icons.mail),
+            ),
+          ]),
+          SizedBox(
+            width: 200,
+            child: TextField(
+              autofocus: true,
+              decoration: InputDecoration(hintText: "write test text"),
+              onChanged: (text) {
+                print("raho katteb $text");
+              },
+            ),
+          )
         ]),
       ),
     );
