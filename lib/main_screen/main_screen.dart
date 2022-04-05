@@ -22,14 +22,12 @@ class _univsState extends State<univs> {
   }
 
   getdata() async {
-    var test = Uri.parse('https://www.breakingbadapi.com/api/characters');
+    var test = Uri.parse(
+        'https://evening-savannah-43647.herokuapp.com/api/list_countries');
     var response = await http.get(test);
     if (response.statusCode == 200) {
       var jsonResponse = convert.jsonDecode(response.body);
-      for (var el in jsonResponse) {
-        entries.add(el["name"]);
-        colorCodes.add(50);
-      }
+      print(jsonResponse);
     } else {
       print('Request failed with status: ${response.statusCode}.');
     }

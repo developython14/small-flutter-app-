@@ -9,13 +9,41 @@ class login extends StatefulWidget {
 
 class _loginState extends State<login> {
   final _formKey = GlobalKey<FormState>();
-  String name = 'mus';
-  var password = 'free';
+  String? name = '';
+  String? password = '';
 
   Future<void> _savingdata() async {
     if (_formKey.currentState!.validate()) {
-      _formKey.currentState.save();
+      _formKey.currentState!.save();
     }
+  }
+
+  Future<void> _showMyDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('AlertDialog Title'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text('This is a demo alert dialog. $name'),
+                Text('Would you like to approve of this message? $password'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Approve'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -32,37 +60,36 @@ class _loginState extends State<login> {
           SizedBox(height: 25),
           Text('Login',
               style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold)),
-          Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  TextFormField(
-                    decoration: InputDecoration(hintText: 'name'),
-                    onSaved: (text) {
-                      name = text;
-                    },
-                  ),
-                  TextFormField(
-                    decoration: InputDecoration(hintText: 'pass'),
-                    onSaved: (text) {
-                      password = text;
-                    },
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      // Validate returns true if the form is valid, or false otherwise.
-                      if (_formKey.currentState!.validate()) {
-                        // If the form is valid, display a snackbar. In the real world,
-                        // you'd often call a server or save the information in a database.
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Processing Data')),
-                        );
-                      }
-                    },
-                    child: const Text('Submit'),
-                  ),
-                ],
-              ))
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 35.0),
+            child: Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    TextFormField(
+                      decoration: InputDecoration(
+                          hintText: 'name', icon: Icon(Icons.person)),
+                      onSaved: (text) {
+                        name = text;
+                      },
+                    ),
+                    TextFormField(
+                      decoration: InputDecoration(
+                          hintText: 'pass', icon: Icon(Icons.lock)),
+                      onSaved: (text) {
+                        password = text;
+                      },
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        // Validate returns true if the form is valid, or false otherwise.
+                        _showMyDialog();
+                      },
+                      child: const Text('login'),
+                    ),
+                  ],
+                )),
+          )
         ]),
       ),
     );
