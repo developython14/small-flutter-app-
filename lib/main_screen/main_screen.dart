@@ -27,7 +27,11 @@ class _univsState extends State<univs> {
     var response = await http.get(test);
     if (response.statusCode == 200) {
       var jsonResponse = convert.jsonDecode(response.body);
-      print(jsonResponse);
+      for (var i = 0; i < jsonResponse.length; i++) {
+        entries.add(jsonResponse[i]["country"]);
+        colorCodes.add(800);
+      }
+      print('do it');
     } else {
       print('Request failed with status: ${response.statusCode}.');
     }
@@ -44,7 +48,12 @@ class _univsState extends State<univs> {
             return Container(
               height: 50,
               color: Colors.amber[colorCodes[index]],
-              child: Center(child: Text('Entry ${entries[index]}')),
+              child: Center(
+                  child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/login');
+                      },
+                      child: Text('${entries[index]}'))),
             );
           },
           separatorBuilder: (BuildContext context, int index) =>

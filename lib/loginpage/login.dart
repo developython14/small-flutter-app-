@@ -82,6 +82,7 @@ class _loginState extends State<login> {
                     ),
                     ElevatedButton(
                       onPressed: () {
+                        _savingdata();
                         // Validate returns true if the form is valid, or false otherwise.
                         _showMyDialog();
                       },
