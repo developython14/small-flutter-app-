@@ -11,6 +11,7 @@ class signup extends StatefulWidget {
 class _signupState extends State<signup> {
   final _formKey = GlobalKey<FormState>();
   int groupValue = 0;
+  final my = ["mustapha", "belkassem", "allo", "paris"];
 
   @override
   Widget build(BuildContext context) {
@@ -55,8 +56,7 @@ class _signupState extends State<signup> {
                   GFRadioListTile(
                     titleText: 'Arthur Shelby',
                     subTitleText: 'By order of the peaky blinders',
-                    avatar: GFAvatar(
-                      backgroundImage: AssetImage('assets/0.jpg'),
+                   
                     ),
                     size: 25,
                     activeBorderColor: Colors.green,
@@ -74,9 +74,7 @@ class _signupState extends State<signup> {
                   GFRadioListTile(
                     titleText: 'Arthur Shelby',
                     subTitleText: 'By order of the peaky blinders',
-                    avatar: GFAvatar(
-                      backgroundImage: AssetImage('assets/0.jpg'),
-                    ),
+                   
                     size: 25,
                     activeBorderColor: Colors.green,
                     focusColor: Colors.green,
@@ -94,6 +92,9 @@ class _signupState extends State<signup> {
                   Row(
                     children: [
                       Text("Select country"),
+                      DropdownButton(
+                          items: my.map(buildmen).toList(),
+                          onChanged: (text) {})
                     ],
                   ),
                   SizedBox(height: 20),
@@ -155,3 +156,6 @@ class _signupState extends State<signup> {
     ));
   }
 }
+
+DropdownMenuItem<String> buildmen(String item) =>
+    DropdownMenuItem(value: item, child: Text('$item'));
