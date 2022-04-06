@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:getwidget/getwidget.dart';
 
 class signup extends StatefulWidget {
   const signup({Key? key}) : super(key: key);
@@ -9,6 +10,7 @@ class signup extends StatefulWidget {
 
 class _signupState extends State<signup> {
   final _formKey = GlobalKey<FormState>();
+  int groupValue = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +52,63 @@ class _signupState extends State<signup> {
                     onSaved: (text) {},
                   ),
                   SizedBox(height: 20),
+                  GFRadioListTile(
+                    titleText: 'Arthur Shelby',
+                    subTitleText: 'By order of the peaky blinders',
+                    avatar: GFAvatar(
+                      backgroundImage: AssetImage('assets/0.jpg'),
+                    ),
+                    size: 25,
+                    activeBorderColor: Colors.green,
+                    focusColor: Colors.green,
+                    type: GFRadioType.square,
+                    value: 0,
+                    groupValue: groupValue,
+                    onChanged: (value) {
+                      setState(() {
+                        groupValue = value;
+                      });
+                    },
+                    inactiveIcon: null,
+                  ),
+                  GFRadioListTile(
+                    titleText: 'Arthur Shelby',
+                    subTitleText: 'By order of the peaky blinders',
+                    avatar: GFAvatar(
+                      backgroundImage: AssetImage('assets/0.jpg'),
+                    ),
+                    size: 25,
+                    activeBorderColor: Colors.green,
+                    focusColor: Colors.green,
+                    type: GFRadioType.square,
+                    value: 1,
+                    groupValue: groupValue,
+                    onChanged: (value) {
+                      setState(() {
+                        groupValue = value;
+                      });
+                    },
+                    inactiveIcon: null,
+                  ),
+                  SizedBox(height: 20),
+                  Row(
+                    children: [
+                      Text("Select country"),
+                    ],
+                  ),
+                  SizedBox(height: 20),
+                  Row(
+                    children: [Text("Select Faculty")],
+                  ),
+                  SizedBox(height: 20),
+                  Row(
+                    children: [Text("Select Speciality ")],
+                  ),
+                  SizedBox(height: 20),
+                  Row(
+                    children: [Text("Select Level")],
+                  ),
+                  SizedBox(height: 20),
                   TextFormField(
                     decoration: InputDecoration(
                         hintText: 'Email',
@@ -80,6 +139,12 @@ class _signupState extends State<signup> {
                         prefixIcon: Icon(Icons.email),
                         border: OutlineInputBorder()),
                     onSaved: (text) {},
+                  ),
+                  SizedBox(height: 20),
+                  GFButton(
+                    onPressed: () {},
+                    text: "primary",
+                    shape: GFButtonShape.pills,
                   ),
                 ],
               )),
