@@ -44,7 +44,7 @@ class _signupState extends State<signup> {
                 children: [
                   TextFormField(
                     decoration: InputDecoration(
-                        hintText: 'name',
+                        hintText: 'Name',
                         prefixIcon: Icon(Icons.email),
                         border: OutlineInputBorder()),
                     onSaved: (text) {},
@@ -52,12 +52,35 @@ class _signupState extends State<signup> {
                   SizedBox(height: 20),
                   TextFormField(
                     decoration: InputDecoration(
-                        hintText: 'pass',
+                        hintText: 'Email',
                         prefixIcon: Icon(Icons.email),
                         border: OutlineInputBorder()),
                     onSaved: (text) {},
                   ),
                   SizedBox(height: 20),
+                  TextFormField(
+                    decoration: InputDecoration(
+                        hintText: 'Password',
+                        prefixIcon: Icon(Icons.email),
+                        border: OutlineInputBorder()),
+                    onSaved: (text) {},
+                  ),
+                  SizedBox(height: 20),
+                  TextFormField(
+                    decoration: InputDecoration(
+                        hintText: 'Repeat Password',
+                        prefixIcon: Icon(Icons.email),
+                        border: OutlineInputBorder()),
+                    onSaved: (text) {},
+                  ),
+                  SizedBox(height: 20),
+                  TextFormField(
+                    decoration: InputDecoration(
+                        hintText: 'Phone number',
+                        prefixIcon: Icon(Icons.email),
+                        border: OutlineInputBorder()),
+                    onSaved: (text) {},
+                  ),
                 ],
               )),
             )
