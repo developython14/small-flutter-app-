@@ -51,19 +51,18 @@ class _signupState extends State<signup> {
                 children: [
                   TextFormField(
                     decoration: InputDecoration(
-                        hintText: 'Name',
-                        prefixIcon: Icon(Icons.email),
+                        hintText: 'Name complete',
+                        prefixIcon: Icon(Icons.person),
                         border: OutlineInputBorder()),
                     onSaved: (text) {},
                   ),
                   SizedBox(height: 20),
                   GFRadioListTile(
-                    titleText: 'Arthur Shelby',
+                    titleText: 'Female',
                     subTitleText: 'By order of the peaky blinders',
-
-                      avatar: GFAvatar(
-    backgroundImage: AssetImage('Assets/start_app/0.jpg'),
-  ),
+                    avatar: GFAvatar(
+                      backgroundImage: AssetImage('Assets/start_app/0.jpg'),
+                    ),
                     size: 25,
                     activeBorderColor: Colors.green,
                     focusColor: Colors.green,
@@ -78,11 +77,10 @@ class _signupState extends State<signup> {
                     inactiveIcon: null,
                   ),
                   GFRadioListTile(
-                    titleText: 'Arthur Shelby',
-                    subTitleText: 'By order of the peaky blinders',
+                    titleText: 'Male',
                     avatar: GFAvatar(
-    backgroundImage: AssetImage('Assets/start_app/0.jpg'),
-  ),
+                      backgroundImage: AssetImage('Assets/start_app/0.jpg'),
+                    ),
                     size: 25,
                     activeBorderColor: Colors.green,
                     focusColor: Colors.green,
@@ -107,21 +105,30 @@ class _signupState extends State<signup> {
                   ),
                   SizedBox(height: 20),
                   Row(
-                    children: [Text("Select Faculty"), DropdownButton(
+                    children: [
+                      Text("Select Faculty"),
+                      DropdownButton(
                           items: list_faculties.map(buildmen).toList(),
-                          onChanged: (text) {})],
+                          onChanged: (text) {})
+                    ],
                   ),
                   SizedBox(height: 20),
                   Row(
-                    children: [Text("Select Speciality "),DropdownButton(
+                    children: [
+                      Text("Select Speciality "),
+                      DropdownButton(
                           items: list_spicialities.map(buildmen).toList(),
-                          onChanged: (text) {})],
+                          onChanged: (text) {})
+                    ],
                   ),
                   SizedBox(height: 20),
                   Row(
-                    children: [Text("Select Level")],DropdownButton(
+                    children: [
+                      Text("Select Level"),
+                      DropdownButton(
                           items: list_levels.map(buildmen).toList(),
-                          onChanged: (text) {}),
+                          onChanged: (text) {})
+                    ],
                   ),
                   SizedBox(height: 20),
                   TextFormField(
@@ -135,15 +142,15 @@ class _signupState extends State<signup> {
                   TextFormField(
                     decoration: InputDecoration(
                         hintText: 'Password',
-                        prefixIcon: Icon(Icons.email),
-                         suffixIcon: IconButton(
-                            icon: Icon(Icons.password),
-                            onPressed: () {
-                              setState(() {
-                                is_pass = !is_pass;
-                              });
-                            },
-                          ),
+                        prefixIcon: Icon(Icons.lock),
+                        suffixIcon: IconButton(
+                          icon: Icon(Icons.password),
+                          onPressed: () {
+                            setState(() {
+                              is_pass = !is_pass;
+                            });
+                          },
+                        ),
                         border: OutlineInputBorder()),
                     onSaved: (text) {},
                   ),
@@ -151,15 +158,15 @@ class _signupState extends State<signup> {
                   TextFormField(
                     decoration: InputDecoration(
                         hintText: 'Repeat Password',
-                        prefixIcon: Icon(Icons.email),
-                         suffixIcon: IconButton(
-                            icon: Icon(Icons.password),
-                            onPressed: () {
-                              setState(() {
-                                is_pass = !is_pass;
-                              });
-                            },
-                          ),
+                        prefixIcon: Icon(Icons.lock),
+                        suffixIcon: IconButton(
+                          icon: Icon(Icons.password),
+                          onPressed: () {
+                            setState(() {
+                              is_pass = !is_pass;
+                            });
+                          },
+                        ),
                         border: OutlineInputBorder()),
                     onSaved: (text) {},
                   ),
@@ -167,7 +174,7 @@ class _signupState extends State<signup> {
                   TextFormField(
                     decoration: InputDecoration(
                         hintText: 'Phone number',
-                        prefixIcon: Icon(Icons.email),
+                        prefixIcon: Icon(Icons.phone),
                         border: OutlineInputBorder()),
                     onSaved: (text) {},
                   ),
@@ -176,7 +183,7 @@ class _signupState extends State<signup> {
                     onPressed: () {},
                     text: "Signup",
                     shape: GFButtonShape.pills,
-                      fullWidthButton: true,
+                    fullWidthButton: true,
                   ),
                 ],
               )),
