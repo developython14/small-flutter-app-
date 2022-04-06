@@ -39,6 +39,8 @@ dependencies:
   google_fonts: ^2.1.0
   simple_animations: ^4.0.1
   cached_network_image: ^3.1.0
+  flutter_signin_button: ^2.0.0
+
 
 
   # The following adds the Cupertino Icons font to your application.

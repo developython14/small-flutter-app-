@@ -7,7 +7,7 @@ import 'package:mustapha/intro_screen/wait.dart';
 void main() {
   runApp(MaterialApp(
       title: 'mustapha developper ',
-      initialRoute: '/free',
+      initialRoute: '/login',
       routes: {
         '/login': (context) => login(),
         '/intro': (context) => toma(),
