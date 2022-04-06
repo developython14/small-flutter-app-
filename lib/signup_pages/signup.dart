@@ -60,8 +60,10 @@ class _signupState extends State<signup> {
                   GFRadioListTile(
                     titleText: 'Arthur Shelby',
                     subTitleText: 'By order of the peaky blinders',
-                   
-                    ),
+
+                      avatar: GFAvatar(
+    backgroundImage: AssetImage('Assets/start_app/0.jpg'),
+  ),
                     size: 25,
                     activeBorderColor: Colors.green,
                     focusColor: Colors.green,
@@ -78,8 +80,8 @@ class _signupState extends State<signup> {
                   GFRadioListTile(
                     titleText: 'Arthur Shelby',
                     subTitleText: 'By order of the peaky blinders',
-                   GFAvatar(
-    backgroundImage: AssetImage('Assets image here'),
+                    avatar: GFAvatar(
+    backgroundImage: AssetImage('Assets/start_app/0.jpg'),
   ),
                     size: 25,
                     activeBorderColor: Colors.green,
