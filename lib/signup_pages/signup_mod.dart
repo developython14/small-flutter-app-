@@ -25,6 +25,7 @@ class _signupmodState extends State<signupmod> {
   String? phone = '';
   String? phone_second = '';
   String? avalibality = '';
+  String? date_of_birth = '';
 
   bool is_pass = true;
   final list_countries = ["Bac+1"];
@@ -126,6 +127,7 @@ class _signupmodState extends State<signupmod> {
                     },
                   ),
                   SizedBox(height: 20),
+                  Text('Date Of Birth : '),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -307,6 +309,20 @@ class _signupmodState extends State<signupmod> {
                           })
                     ],
                   ),
+                  SizedBox(height: 20),
+                  Text('File Required',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 26)),
+                  SizedBox(height: 20),
+                  Text('your your Cv'),
+                  SizedBox(height: 20),
+                  Text('your your Degree'),
+                  SizedBox(height: 20),
+                  Text('your your experience province'),
+                  SizedBox(height: 20),
+                  Text('your your identify card'),
+                  SizedBox(height: 20),
+                  Text('Services your provided'),
                   SizedBox(height: 20),
                   TextFormField(
                     decoration: InputDecoration(
