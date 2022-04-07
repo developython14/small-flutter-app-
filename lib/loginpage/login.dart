@@ -112,17 +112,17 @@ class _loginState extends State<login> {
                         },
                       ),
                       Align(
-              alignment: Alignment.centerRight,
-              child: TextButton(
-                onPressed: () {},
-                child: const Text(
-                  "Forgot Password?",
-                  style: TextStyle(
-                    color: Colors.black,
-                  ),
-                ),
-              ),
-            ),
+                        alignment: Alignment.centerRight,
+                        child: TextButton(
+                          onPressed: () {},
+                          child: const Text(
+                            "Forgot Password?",
+                            style: TextStyle(
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                      ),
                       SizedBox(height: 25),
                       SizedBox(
                         width: 220,
@@ -166,7 +166,9 @@ class _loginState extends State<login> {
                         width: 220,
                         child: ElevatedButton(
                           child: Text('registre'),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/signup');
+                          },
                         ),
                       )
                     ],

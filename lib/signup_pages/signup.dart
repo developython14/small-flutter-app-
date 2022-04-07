@@ -132,24 +132,22 @@ class _signupState extends State<signup> {
                   Row(
                     children: [
                       Text("Male"),
-                      Checkbox(
+                      Radio(
+                          groupValue: 25,
                           value: true,
                           onChanged: (text) {
-                            setState(() {
-                              gender = text;
-                            });
+                            setState(() {});
                           })
                     ],
                   ),
                   Row(
                     children: [
                       Text("Female"),
-                      Checkbox(
+                      Radio(
+                          groupValue: 14,
                           value: false,
                           onChanged: (text) {
-                            setState(() {
-                              gender = text;
-                            });
+                            setState(() {});
                           })
                     ],
                   ),
