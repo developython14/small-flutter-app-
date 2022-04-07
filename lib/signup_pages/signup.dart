@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
+import 'dart:convert' as convert;
+import 'package:http/http.dart' as http;
 
 class signup extends StatefulWidget {
   const signup({Key? key}) : super(key: key);
@@ -10,12 +12,73 @@ class signup extends StatefulWidget {
 
 class _signupState extends State<signup> {
   final _formKey = GlobalKey<FormState>();
+  String? name = '';
+  bool? gender = true;
+  String? country = '';
+  String? faculty = '';
+  String? level = '';
+  String? spiciality = '';
+  String? email = '';
+  String? password = '';
+  String? phone = '';
+
   bool is_pass = true;
-  int groupValue = 0;
-  final list_countries = ["mustapha", "belkassem", "allo", "paris"];
-  final list_faculties = ["mustapha", "belkassem", "allo", "paris"];
-  final list_spicialities = ["mustapha", "belkassem", "allo", "paris"];
-  final list_levels = ["mustapha", "belkassem", "allo", "paris"];
+  final list_countries = ["Bac+1"];
+  final list_faculties = ["Bac+1"];
+  final list_spicialities = ["Bac+1"];
+  final list_levels = ["Bac+1", "Bac+2", "Bac+3", "Bac+4", "Bac+5"];
+
+  getdatacountries() async {
+    var test = Uri.parse(
+        'https://evening-savannah-43647.herokuapp.com/api/list_countries');
+    var response = await http.get(test);
+    if (response.statusCode == 200) {
+      var jsonResponse = convert.jsonDecode(response.body);
+      for (var i = 0; i < jsonResponse.length; i++) {
+        list_countries.add(jsonResponse[i]["country"]);
+      }
+    } else {
+      print('Request failed with status: ${response.statusCode}.');
+    }
+  }
+
+  getdatafaculties() async {
+    var test = Uri.parse(
+        'https://evening-savannah-43647.herokuapp.com/api/list_faculties');
+    var response = await http.get(test);
+    if (response.statusCode == 200) {
+      var jsonResponse = convert.jsonDecode(response.body);
+      for (var i = 0; i < jsonResponse.length; i++) {
+        list_faculties.add(jsonResponse[i]["faculty"]);
+      }
+    } else {
+      print('Request failed with status: ${response.statusCode}.');
+    }
+  }
+
+  getdataspiciality() async {
+    var test = Uri.parse(
+        'https://evening-savannah-43647.herokuapp.com/api/list_faculties');
+    var response = await http.get(test);
+    if (response.statusCode == 200) {
+      var jsonResponse = convert.jsonDecode(response.body);
+      for (var i = 0; i < jsonResponse.length; i++) {
+        list_spicialities.add(jsonResponse[i]["faculty"]);
+      }
+    } else {
+      print('Request failed with status: ${response.statusCode}.');
+    }
+  }
+
+  @override
+  void initState() {
+    getdatacountries();
+    getdatafaculties();
+    getdataspiciality();
+
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,53 +117,54 @@ class _signupState extends State<signup> {
                         hintText: 'Name complete',
                         prefixIcon: Icon(Icons.person),
                         border: OutlineInputBorder()),
-                    onSaved: (text) {},
+                    onSaved: (text) {
+                      name = text;
+                    },
                   ),
                   SizedBox(height: 20),
-                  GFRadioListTile(
-                    titleText: 'Female',
-                    subTitleText: 'By order of the peaky blinders',
-                    avatar: GFAvatar(
-                      backgroundImage: AssetImage('Assets/start_app/0.jpg'),
-                    ),
-                    size: 25,
-                    activeBorderColor: Colors.green,
-                    focusColor: Colors.green,
-                    type: GFRadioType.square,
-                    value: 0,
-                    groupValue: groupValue,
-                    onChanged: (value) {
-                      setState(() {
-                        groupValue = value;
-                      });
-                    },
-                    inactiveIcon: null,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text("Select Gender:"),
+                    ],
                   ),
-                  GFRadioListTile(
-                    titleText: 'Male',
-                    avatar: GFAvatar(
-                      backgroundImage: AssetImage('Assets/start_app/0.jpg'),
-                    ),
-                    size: 25,
-                    activeBorderColor: Colors.green,
-                    focusColor: Colors.green,
-                    type: GFRadioType.square,
-                    value: 1,
-                    groupValue: groupValue,
-                    onChanged: (value) {
-                      setState(() {
-                        groupValue = value;
-                      });
-                    },
-                    inactiveIcon: null,
+                  SizedBox(height: 10),
+                  Row(
+                    children: [
+                      Text("Male"),
+                      Checkbox(
+                          value: true,
+                          onChanged: (text) {
+                            setState(() {
+                              gender = text;
+                            });
+                          })
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Text("Female"),
+                      Checkbox(
+                          value: false,
+                          onChanged: (text) {
+                            setState(() {
+                              gender = text;
+                            });
+                          })
+                    ],
                   ),
                   SizedBox(height: 20),
                   Row(
                     children: [
                       Text("Select country"),
                       DropdownButton(
+                          hint: Text('$country'),
                           items: list_countries.map(buildmen).toList(),
-                          onChanged: (text) {})
+                          onChanged: (String? text) {
+                            setState(() {
+                              country = text ?? "";
+                            });
+                          })
                     ],
                   ),
                   SizedBox(height: 20),
@@ -108,8 +172,13 @@ class _signupState extends State<signup> {
                     children: [
                       Text("Select Faculty"),
                       DropdownButton(
+                          hint: Text('$faculty'),
                           items: list_faculties.map(buildmen).toList(),
-                          onChanged: (text) {})
+                          onChanged: (String? text) {
+                            setState(() {
+                              faculty = text ?? "";
+                            });
+                          })
                     ],
                   ),
                   SizedBox(height: 20),
@@ -117,8 +186,13 @@ class _signupState extends State<signup> {
                     children: [
                       Text("Select Speciality "),
                       DropdownButton(
+                          hint: Text('$spiciality'),
                           items: list_spicialities.map(buildmen).toList(),
-                          onChanged: (text) {})
+                          onChanged: (String? text) {
+                            setState(() {
+                              spiciality = text ?? "";
+                            });
+                          })
                     ],
                   ),
                   SizedBox(height: 20),
@@ -126,8 +200,13 @@ class _signupState extends State<signup> {
                     children: [
                       Text("Select Level"),
                       DropdownButton(
+                          hint: Text('$level'),
                           items: list_levels.map(buildmen).toList(),
-                          onChanged: (text) {})
+                          onChanged: (String? text) {
+                            setState(() {
+                              level = text ?? "";
+                            });
+                          })
                     ],
                   ),
                   SizedBox(height: 20),
@@ -136,10 +215,13 @@ class _signupState extends State<signup> {
                         hintText: 'Email',
                         prefixIcon: Icon(Icons.email),
                         border: OutlineInputBorder()),
-                    onSaved: (text) {},
+                    onSaved: (text) {
+                      email = text;
+                    },
                   ),
                   SizedBox(height: 20),
                   TextFormField(
+                    obscureText: is_pass,
                     decoration: InputDecoration(
                         hintText: 'Password',
                         prefixIcon: Icon(Icons.lock),
@@ -152,10 +234,13 @@ class _signupState extends State<signup> {
                           },
                         ),
                         border: OutlineInputBorder()),
-                    onSaved: (text) {},
+                    onSaved: (text) {
+                      password = text;
+                    },
                   ),
                   SizedBox(height: 20),
                   TextFormField(
+                    obscureText: is_pass,
                     decoration: InputDecoration(
                         hintText: 'Repeat Password',
                         prefixIcon: Icon(Icons.lock),
@@ -176,7 +261,9 @@ class _signupState extends State<signup> {
                         hintText: 'Phone number',
                         prefixIcon: Icon(Icons.phone),
                         border: OutlineInputBorder()),
-                    onSaved: (text) {},
+                    onSaved: (text) {
+                      phone = text;
+                    },
                   ),
                   SizedBox(height: 20),
                   GFButton(
