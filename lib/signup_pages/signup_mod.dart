@@ -27,6 +27,7 @@ class _signupmodState extends State<signupmod> {
   String? phone_second = '';
   String? avalibality = '';
   String? date_of_birth = '';
+  DateTime data = DateTime(4, 17, 1998);
 
   bool is_pass = true;
   final list_countries = ["Bac+1"];
@@ -132,8 +133,22 @@ class _signupmodState extends State<signupmod> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text('Date Of Birth : '),
+                      Text("${data.year}/${data.month}/${data.day}"),
                     ],
                   ),
+                  ElevatedButton(
+                      onPressed: () async {
+                        DateTime? date = await showDatePicker(
+                            context: context,
+                            initialDate: DateTime(1998),
+                            firstDate: DateTime(1900),
+                            lastDate: DateTime(2100));
+                        if (date == null) return;
+                        setState(() {
+                          data = date;
+                        });
+                      },
+                      child: Text("choose your date ")),
                   SizedBox(height: 20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
