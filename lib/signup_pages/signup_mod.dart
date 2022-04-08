@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:getwidget/size/gf_size.dart';
 import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
 
@@ -127,7 +128,13 @@ class _signupmodState extends State<signupmod> {
                     },
                   ),
                   SizedBox(height: 20),
-                  Text('Date Of Birth : '),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text('Date Of Birth : '),
+                    ],
+                  ),
+                  SizedBox(height: 20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -310,19 +317,44 @@ class _signupmodState extends State<signupmod> {
                     ],
                   ),
                   SizedBox(height: 20),
-                  Text('File Required',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 26)),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text('File Required',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 26)),
+                    ],
+                  ),
                   SizedBox(height: 20),
-                  Text('your your Cv'),
+                  Row(
+                    children: [
+                      Text('your your Cv'),
+                    ],
+                  ),
                   SizedBox(height: 20),
-                  Text('your your Degree'),
+                  Row(
+                    children: [
+                      Text('your your Degree'),
+                    ],
+                  ),
                   SizedBox(height: 20),
-                  Text('your your experience province'),
+                  Row(
+                    children: [
+                      Text('your your experience province'),
+                    ],
+                  ),
                   SizedBox(height: 20),
-                  Text('your your identify card'),
+                  Row(
+                    children: [
+                      Text('your your identify card'),
+                    ],
+                  ),
                   SizedBox(height: 20),
-                  Text('Services your provided'),
+                  Row(
+                    children: [
+                      Text('Services your provided'),
+                    ],
+                  ),
                   SizedBox(height: 20),
                   TextFormField(
                     decoration: InputDecoration(
@@ -395,6 +427,7 @@ class _signupmodState extends State<signupmod> {
                     text: "Signup",
                     shape: GFButtonShape.pills,
                     fullWidthButton: true,
+                    size: GFSize.LARGE,
                   ),
                 ],
               )),
