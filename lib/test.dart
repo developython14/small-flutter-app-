@@ -7,7 +7,7 @@ class belk extends StatefulWidget {
 }
 
 class _belkState extends State<belk> {
-  File my file = null;
+  File myfile = null;
   @override
   Widget build(BuildContext context) {
     return Builder(builder: (context) {
@@ -17,12 +17,12 @@ class _belkState extends State<belk> {
               onPressed: () async {
                 FilePickerResult? result =
                     await FilePicker.platform.pickFiles();
-                    if (result != null) {
-  File file = File(result.files.single.path);
-} else {
-  // User canceled the picker
-}             },
-              
+                if (result != null) {
+                  File file = File(result.files.single.path);
+                } else {
+                  // User canceled the picker
+                }
+              },
               child: Text("Upload file"))
         ]),
       );
