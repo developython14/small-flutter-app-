@@ -140,8 +140,8 @@ class _signupmodState extends State<signupmod> {
                       onPressed: () async {
                         DateTime? date = await showDatePicker(
                             context: context,
-                            initialDate: DateTime(1998),
-                            firstDate: DateTime(1900),
+                            initialDate: DateTime(2000),
+                            firstDate: DateTime(1950),
                             lastDate: DateTime(2100));
                         if (date == null) return;
                         setState(() {
