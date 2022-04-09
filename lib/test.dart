@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
+import 'dart:io';
+import 'dart:async';
 
 class belk extends StatefulWidget {
   @override
@@ -7,7 +9,8 @@ class belk extends StatefulWidget {
 }
 
 class _belkState extends State<belk> {
-  File myfile = null;
+  File? myfile;
+
   @override
   Widget build(BuildContext context) {
     return Builder(builder: (context) {
@@ -17,13 +20,18 @@ class _belkState extends State<belk> {
               onPressed: () async {
                 FilePickerResult? result =
                     await FilePicker.platform.pickFiles();
+
                 if (result != null) {
-                  File file = File(result.files.single.path);
+                  File myfile = File(result.files.single.path!);
                 } else {
                   // User canceled the picker
                 }
+                print(myfile!.path);
               },
-              child: Text("Upload file"))
+              child: Text(
+                "Upload file",
+                style: TextStyle(color: Colors.green),
+              ))
         ]),
       );
     });
