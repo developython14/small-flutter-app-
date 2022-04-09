@@ -9,7 +9,7 @@ import 'package:mustapha/test.dart';
 
 void main() {
   runApp(MaterialApp(
-      title: 'mustapha developper ',
+      title: 'mustapha Hacker',
       initialRoute: '/signupmod',
       routes: {
         '/login': (context) => login(),
