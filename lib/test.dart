@@ -3,6 +3,8 @@ import 'package:file_picker/file_picker.dart';
 import 'dart:io';
 import 'dart:async';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
+import 'dart:convert' as convert;
+import 'package:http/http.dart' as http;
 
 class MyApp extends StatelessWidget {
   @override
@@ -18,11 +20,11 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class Animal {
+class Service {
   final int id;
   final String name;
 
-  Animal({
+  Service({
     required this.id,
     required this.name,
   });
@@ -36,48 +38,32 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  static List<Animal> _animals = [
-    Animal(id: 1, name: "Lion"),
-    Animal(id: 2, name: "Flamingo"),
-    Animal(id: 3, name: "Hippo"),
-    Animal(id: 4, name: "Horse"),
-    Animal(id: 5, name: "Tiger"),
-    Animal(id: 6, name: "Penguin"),
-    Animal(id: 7, name: "Spider"),
-    Animal(id: 8, name: "Snake"),
-    Animal(id: 9, name: "Bear"),
-    Animal(id: 10, name: "Beaver"),
-    Animal(id: 11, name: "Cat"),
-    Animal(id: 12, name: "Fish"),
-    Animal(id: 13, name: "Rabbit"),
-    Animal(id: 14, name: "Mouse"),
-    Animal(id: 15, name: "Dog"),
-    Animal(id: 16, name: "Zebra"),
-    Animal(id: 17, name: "Cow"),
-    Animal(id: 18, name: "Frog"),
-    Animal(id: 19, name: "Blue Jay"),
-    Animal(id: 20, name: "Moose"),
-    Animal(id: 21, name: "Gecko"),
-    Animal(id: 22, name: "Kangaroo"),
-    Animal(id: 23, name: "Shark"),
-    Animal(id: 24, name: "Crocodile"),
-    Animal(id: 25, name: "Owl"),
-    Animal(id: 26, name: "Dragonfly"),
-    Animal(id: 27, name: "Dolphin"),
-  ];
-  final _items = _animals
-      .map((animal) => MultiSelectItem<Animal>(animal, animal.name))
+  static List<Service> _services = [Service(id: 1, name: 'mustapha')];
+  final _items = _services
+      .map((service) => MultiSelectItem<Service>(service, service.name))
       .toList();
-  List<Animal> _selectedAnimals = [];
-  List<Animal> _selectedAnimals2 = [];
-  List<Animal> _selectedAnimals3 = [];
-  List<Animal> _selectedAnimals4 = [];
-  List<Animal> _selectedAnimals5 = [];
+  List<Service> _selectedAnimals2 = [];
   final _multiSelectKey = GlobalKey<FormFieldState>();
+
+  getdataserives() async {
+    var test = Uri.parse(
+        'https://evening-savannah-43647.herokuapp.com/api/ls_services');
+    var response = await http.get(test);
+    if (response.statusCode == 200) {
+      var jsonResponse = convert.jsonDecode(response.body);
+      for (var i = 0; i < jsonResponse.length; i++) {
+        Service serv = Service(id: i, name: jsonResponse[i]);
+        _services.add(serv);
+      }
+    } else {
+      print('Request failed with status: ${response.statusCode}.');
+    }
+  }
 
   @override
   void initState() {
-    _selectedAnimals5 = _animals;
+    getdataserives();
+    _selectedAnimals2 = _services;
     super.initState();
   }
 
@@ -97,14 +83,13 @@ class _MyHomePageState extends State<MyHomePage> {
               //################################################################################################
               // Rounded blue MultiSelectDialogField
               //################################################################################################
-              SizedBox(height: 50),
               //################################################################################################
               // This MultiSelectBottomSheetField has no decoration, but is instead wrapped in a Container that has
               // decoration applied. This allows the ChipDisplay to render inside the same Container.
               //################################################################################################
               Container(
                 decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColor.withOpacity(.4),
+                  color: Colors.white,
                   border: Border.all(
                     color: Theme.of(context).primaryColor,
                     width: 2,
@@ -116,10 +101,12 @@ class _MyHomePageState extends State<MyHomePage> {
                       initialChildSize: 0.4,
                       listType: MultiSelectListType.CHIP,
                       searchable: true,
-                      buttonText: Text("Favorite Animals"),
-                      title: Text("Animals"),
+                      buttonText: Text("Services Provided:"),
+                      title: Text("Services"),
                       items: _items,
-                      onConfirm: (values) {},
+                      onConfirm: (values) {
+                        print(_selectedAnimals2);
+                      },
                       chipDisplay: MultiSelectChipDisplay(
                         onTap: (value) {
                           setState(() {
@@ -140,7 +127,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   ],
                 ),
               ),
-              SizedBox(height: 40),
               //################################################################################################
               // MultiSelectBottomSheetField with validators
               //################################################################################################
