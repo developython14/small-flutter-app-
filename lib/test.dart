@@ -38,8 +38,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  static List<Service> _services = [Service(id: 1, name: 'mustapha')];
-  List<Service> _selectedAnimals2 = [];
+  static List<Service> _services = [];
+  List _selectedAnimals2 = [];
   final _multiSelectKey = GlobalKey<FormFieldState>();
 
   getdataserives() async {
@@ -60,6 +60,8 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     getdataserives();
+    print('services hado from api');
+    print(_services);
     super.initState();
   }
 
@@ -105,6 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           .toList(),
                       onConfirm: (values) {
                         _selectedAnimals2 = values;
+                        print(_selectedAnimals2.map((e) => e.name));
                       },
                       chipDisplay: MultiSelectChipDisplay(
                         onTap: (value) {
