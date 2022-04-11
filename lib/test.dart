@@ -2,13 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'dart:io';
 import 'dart:async';
-
-import 'package:flutter/material.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
-
-void main() {
-  runApp(MyApp());
-}
 
 class MyApp extends StatelessWidget {
   @override
@@ -74,10 +68,10 @@ class _MyHomePageState extends State<MyHomePage> {
   final _items = _animals
       .map((animal) => MultiSelectItem<Animal>(animal, animal.name))
       .toList();
-  //List<Animal> _selectedAnimals = [];
+  List<Animal> _selectedAnimals = [];
   List<Animal> _selectedAnimals2 = [];
   List<Animal> _selectedAnimals3 = [];
-  //List<Animal> _selectedAnimals4 = [];
+  List<Animal> _selectedAnimals4 = [];
   List<Animal> _selectedAnimals5 = [];
   final _multiSelectKey = GlobalKey<FormFieldState>();
 
@@ -222,9 +216,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 selectedChipColor: Colors.blue.withOpacity(0.5),
                 selectedTextStyle: TextStyle(color: Colors.blue[800]),
-                onTap: (values) {
-                  //_selectedAnimals4 = values;
-                },
+                onTap: (values) {},
               ),
               SizedBox(height: 40),
               //################################################################################################
