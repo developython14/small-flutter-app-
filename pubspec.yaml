@@ -40,6 +40,7 @@ dependencies:
   simple_animations: ^4.0.1
   flutter_signin_button: ^2.0.0
   file_picker: ^4.5.1
+  multi_select_flutter: ^4.1.2
 
 
 

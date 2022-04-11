@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:file_picker/file_picker.dart';
 import 'dart:io';
 import 'dart:async';
+import 'package:multi_select_flutter/multi_select_flutter.dart';
 
 class signupmod extends StatefulWidget {
   const signupmod({Key? key}) : super(key: key);
@@ -41,10 +42,25 @@ class _signupmodState extends State<signupmod> {
   final list_faculties = ["Bac+1"];
   final list_spicialities = ["Bac+1"];
   final list_levels = ["Moderator", "Professeur"];
+  final list_services = ["Moderator", "Professeur"];
 
   getdatacountries() async {
     var test = Uri.parse(
         'https://evening-savannah-43647.herokuapp.com/api/list_countries');
+    var response = await http.get(test);
+    if (response.statusCode == 200) {
+      var jsonResponse = convert.jsonDecode(response.body);
+      for (var i = 0; i < jsonResponse.length; i++) {
+        list_countries.add(jsonResponse[i]["country"]);
+      }
+    } else {
+      print('Request failed with status: ${response.statusCode}.');
+    }
+  }
+
+  getdataserives() async {
+    var test = Uri.parse(
+        'https://evening-savannah-43647.herokuapp.com/api/ls_services');
     var response = await http.get(test);
     if (response.statusCode == 200) {
       var jsonResponse = convert.jsonDecode(response.body);
@@ -89,7 +105,7 @@ class _signupmodState extends State<signupmod> {
     getdatacountries();
     getdatafaculties();
     getdataspiciality();
-
+    getdataserives();
     // TODO: implement initState
     super.initState();
   }
