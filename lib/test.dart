@@ -97,33 +97,6 @@ class _MyHomePageState extends State<MyHomePage> {
               //################################################################################################
               // Rounded blue MultiSelectDialogField
               //################################################################################################
-              MultiSelectDialogField(
-                items: _items,
-                title: Text("Animals"),
-                selectedColor: Colors.blue,
-                decoration: BoxDecoration(
-                  color: Colors.blue.withOpacity(0.1),
-                  borderRadius: BorderRadius.all(Radius.circular(40)),
-                  border: Border.all(
-                    color: Colors.blue,
-                    width: 2,
-                  ),
-                ),
-                buttonIcon: Icon(
-                  Icons.pets,
-                  color: Colors.blue,
-                ),
-                buttonText: Text(
-                  "Favorite Animals",
-                  style: TextStyle(
-                    color: Colors.blue[800],
-                    fontSize: 16,
-                  ),
-                ),
-                onConfirm: (results) {
-                  //_selectedAnimals = results;
-                },
-              ),
               SizedBox(height: 50),
               //################################################################################################
               // This MultiSelectBottomSheetField has no decoration, but is instead wrapped in a Container that has
@@ -171,64 +144,10 @@ class _MyHomePageState extends State<MyHomePage> {
               //################################################################################################
               // MultiSelectBottomSheetField with validators
               //################################################################################################
-              MultiSelectBottomSheetField<Animal>(
-                key: _multiSelectKey,
-                initialChildSize: 0.7,
-                maxChildSize: 0.95,
-                title: Text("Animals"),
-                buttonText: Text("Favorite Animals"),
-                items: _items,
-                searchable: true,
-                validator: (values) {
-                  if (values == null || values.isEmpty) {
-                    return "Required";
-                  }
-                  List<String> names = values.map((e) => e.name).toList();
-                  if (names.contains("Frog")) {
-                    return "Frogs are weird!";
-                  }
-                  return null;
-                },
-                onConfirm: (values) {
-                  setState(() {
-                    _selectedAnimals3 = values;
-                  });
-                },
-                chipDisplay: MultiSelectChipDisplay(
-                  onTap: (item) {
-                    setState(() {
-                      _selectedAnimals3.remove(item);
-                    });
-                  },
-                ),
-              ),
-              SizedBox(height: 40),
+
               //################################################################################################
               // MultiSelectChipField
               //################################################################################################
-              MultiSelectChipField(
-                items: _items,
-                initialValue: [_animals[4], _animals[7], _animals[9]],
-                title: Text("Animals"),
-                headerColor: Colors.blue.withOpacity(0.5),
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.blue, width: 1.8),
-                ),
-                selectedChipColor: Colors.blue.withOpacity(0.5),
-                selectedTextStyle: TextStyle(color: Colors.blue[800]),
-                onTap: (values) {},
-              ),
-              SizedBox(height: 40),
-              //################################################################################################
-              // MultiSelectDialogField with initial values
-              //################################################################################################
-              MultiSelectDialogField(
-                onConfirm: (val) {},
-                dialogWidth: MediaQuery.of(context).size.width * 0.7,
-                items: _items,
-                initialValue:
-                    _selectedAnimals5, // setting the value of this in initState() to pre-select values.
-              ),
             ],
           ),
         ),
