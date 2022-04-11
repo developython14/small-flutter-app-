@@ -39,7 +39,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   static List<Service> _services = [];
-  List _selectedAnimals2 = [];
+  List _selectedservices = [];
   final _multiSelectKey = GlobalKey<FormFieldState>();
 
   getdataserives() async {
@@ -49,6 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
     if (response.statusCode == 200) {
       var jsonResponse = convert.jsonDecode(response.body);
       for (var i = 0; i < jsonResponse.length; i++) {
+        print(jsonResponse[i]);
         Service serv = Service(id: i, name: jsonResponse[i]);
         _services.add(serv);
       }
@@ -60,8 +61,6 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     getdataserives();
-    print('services hado from api');
-    print(_services);
     super.initState();
   }
 

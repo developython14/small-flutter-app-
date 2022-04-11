@@ -8,6 +8,16 @@ import 'dart:io';
 import 'dart:async';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 
+class Service {
+  final int id;
+  final String name;
+
+  Service({
+    required this.id,
+    required this.name,
+  });
+}
+
 class signupmod extends StatefulWidget {
   const signupmod({Key? key}) : super(key: key);
 
@@ -17,6 +27,9 @@ class signupmod extends StatefulWidget {
 
 class _signupmodState extends State<signupmod> {
   final _formKey = GlobalKey<FormState>();
+  static List<Service> _services = [];
+  List _selectedservices = [];
+  final _multiSelectKey = GlobalKey<FormFieldState>();
   String? name = '';
   String? gender = '';
   String? country = '';
@@ -65,7 +78,9 @@ class _signupmodState extends State<signupmod> {
     if (response.statusCode == 200) {
       var jsonResponse = convert.jsonDecode(response.body);
       for (var i = 0; i < jsonResponse.length; i++) {
-        list_countries.add(jsonResponse[i]["country"]);
+        print(jsonResponse[i]);
+        Service serv = Service(id: i, name: jsonResponse[i]);
+        _services.add(serv);
       }
     } else {
       print('Request failed with status: ${response.statusCode}.');
@@ -458,6 +473,50 @@ class _signupmodState extends State<signupmod> {
                     children: [
                       Text('Services your provided'),
                     ],
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(
+                        color: Theme.of(context).primaryColor,
+                        width: 2,
+                      ),
+                    ),
+                    child: Column(
+                      children: <Widget>[
+                        MultiSelectBottomSheetField(
+                          initialChildSize: 0.4,
+                          listType: MultiSelectListType.CHIP,
+                          searchable: true,
+                          buttonText: Text("Services Provided:"),
+                          title: Text("Services"),
+                          items: _services
+                              .map((service) => MultiSelectItem<Service>(
+                                  service, service.name))
+                              .toList(),
+                          onConfirm: (values) {
+                            _selectedservices = values;
+                            print(_selectedservices.map((e) => e.name));
+                          },
+                          chipDisplay: MultiSelectChipDisplay(
+                            onTap: (value) {
+                              setState(() {
+                                _selectedservices.remove(value);
+                              });
+                            },
+                          ),
+                        ),
+                        _selectedservices == null || _selectedservices.isEmpty
+                            ? Container(
+                                padding: EdgeInsets.all(10),
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  "None selected",
+                                  style: TextStyle(color: Colors.black54),
+                                ))
+                            : Container(),
+                      ],
+                    ),
                   ),
                   SizedBox(height: 20),
                   TextFormField(
