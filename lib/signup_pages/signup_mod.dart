@@ -187,17 +187,6 @@ class _signupmodState extends State<signupmod> {
                             });
                             print('gender is $gender');
                           })),
-                  Row(
-                    children: [
-                      Text("Female"),
-                      Radio(
-                          groupValue: 14,
-                          value: false,
-                          onChanged: (text) {
-                            setState(() {});
-                          })
-                    ],
-                  ),
                   SizedBox(height: 20),
                   Row(
                     children: [
@@ -295,61 +284,61 @@ class _signupmodState extends State<signupmod> {
                     ],
                   ),
                   SizedBox(height: 10),
-                  Row(
-                    children: [
-                      Text("5H"),
-                      Radio(
-                          groupValue: 25,
-                          value: true,
-                          onChanged: (text) {
-                            setState(() {});
-                          })
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Text("10H"),
-                      Radio(
-                          groupValue: 14,
-                          value: false,
-                          onChanged: (text) {
-                            setState(() {});
-                          })
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Text("15H"),
-                      Radio(
-                          groupValue: 14,
-                          value: false,
-                          onChanged: (text) {
-                            setState(() {});
-                          })
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Text("20H"),
-                      Radio(
-                          groupValue: 14,
-                          value: false,
-                          onChanged: (text) {
-                            setState(() {});
-                          })
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Text("+25H"),
-                      Radio(
-                          groupValue: 14,
-                          value: false,
-                          onChanged: (text) {
-                            setState(() {});
-                          })
-                    ],
-                  ),
+                  ListTile(
+                      title: Text('5H'),
+                      leading: Radio(
+                          value: "5H",
+                          groupValue: avalibality,
+                          onChanged: (String? text) {
+                            setState(() {
+                              avalibality = '5H';
+                            });
+                            print('avalibality is $avalibality');
+                          })),
+                  ListTile(
+                      title: Text('10H'),
+                      leading: Radio(
+                          value: "10H",
+                          groupValue: avalibality,
+                          onChanged: (String? text) {
+                            setState(() {
+                              avalibality = '10H';
+                            });
+                            print('avalibality is $avalibality');
+                          })),
+                  ListTile(
+                      title: Text('15H'),
+                      leading: Radio(
+                          value: "15H",
+                          groupValue: avalibality,
+                          onChanged: (String? text) {
+                            setState(() {
+                              avalibality = '15H';
+                            });
+                            print('avalibality is $avalibality');
+                          })),
+                  ListTile(
+                      title: Text('20H'),
+                      leading: Radio(
+                          value: "20H",
+                          groupValue: avalibality,
+                          onChanged: (String? text) {
+                            setState(() {
+                              avalibality = '20H';
+                            });
+                            print('avalibality is $avalibality');
+                          })),
+                  ListTile(
+                      title: Text('+25H'),
+                      leading: Radio(
+                          value: "+25H",
+                          groupValue: avalibality,
+                          onChanged: (String? text) {
+                            setState(() {
+                              avalibality = '+25H';
+                            });
+                            print('avalibality is $avalibality');
+                          })),
                   SizedBox(height: 20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
