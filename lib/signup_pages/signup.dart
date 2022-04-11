@@ -11,22 +11,32 @@ class signup extends StatefulWidget {
 }
 
 class _signupState extends State<signup> {
-  final _formKey = GlobalKey<FormState>();
-  String? name = '';
-  bool? gender = true;
   String? country = '';
-  String? faculty = '';
-  String? level = '';
-  String? spiciality = '';
   String? email = '';
-  String? password = '';
-  String? phone = '';
-
+  String? faculty = '';
+  bool? gender = true;
   bool is_pass = true;
+  String? level = '';
   final list_countries = ["Bac+1"];
   final list_faculties = ["Bac+1"];
-  final list_spicialities = ["Bac+1"];
   final list_levels = ["Bac+1", "Bac+2", "Bac+3", "Bac+4", "Bac+5"];
+  final list_spicialities = ["Bac+1"];
+  String? name = '';
+  String? password = '';
+  String? phone = '';
+  String? spiciality = '';
+
+  final _formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    getdatacountries();
+    getdatafaculties();
+    getdataspiciality();
+
+    // TODO: implement initState
+    super.initState();
+  }
 
   getdatacountries() async {
     var test = Uri.parse(
@@ -68,16 +78,6 @@ class _signupState extends State<signup> {
     } else {
       print('Request failed with status: ${response.statusCode}.');
     }
-  }
-
-  @override
-  void initState() {
-    getdatacountries();
-    getdatafaculties();
-    getdataspiciality();
-
-    // TODO: implement initState
-    super.initState();
   }
 
   @override

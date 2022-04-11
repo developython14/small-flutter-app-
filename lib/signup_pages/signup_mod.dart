@@ -3,6 +3,9 @@ import 'package:getwidget/getwidget.dart';
 import 'package:getwidget/size/gf_size.dart';
 import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
+import 'package:file_picker/file_picker.dart';
+import 'dart:io';
+import 'dart:async';
 
 class signupmod extends StatefulWidget {
   const signupmod({Key? key}) : super(key: key);
@@ -14,7 +17,7 @@ class signupmod extends StatefulWidget {
 class _signupmodState extends State<signupmod> {
   final _formKey = GlobalKey<FormState>();
   String? name = '';
-  bool? gender = true;
+  String? gender = '';
   String? country = '';
   String? city = '';
   String? faculty = '';
@@ -28,6 +31,10 @@ class _signupmodState extends State<signupmod> {
   String? avalibality = '';
   String? date_of_birth = '';
   DateTime data = DateTime(4, 17, 1998);
+  File? cv;
+  File? degree;
+  File? experience;
+  File? identity;
 
   bool is_pass = true;
   final list_countries = ["Bac+1"];
@@ -157,17 +164,29 @@ class _signupmodState extends State<signupmod> {
                     ],
                   ),
                   SizedBox(height: 10),
-                  Row(
-                    children: [
-                      Text("Male"),
-                      Radio(
-                          groupValue: 25,
-                          value: true,
-                          onChanged: (text) {
-                            setState(() {});
-                          })
-                    ],
-                  ),
+                  ListTile(
+                      title: Text('Male'),
+                      leading: Radio(
+                          value: "Male",
+                          groupValue: gender,
+                          onChanged: (String? text) {
+                            setState(() {
+                              gender = text;
+                            });
+                            print('gender is $gender');
+                          })),
+                  SizedBox(height: 10),
+                  ListTile(
+                      title: Text('Female'),
+                      leading: Radio(
+                          value: "Female",
+                          groupValue: gender,
+                          onChanged: (String? text) {
+                            setState(() {
+                              gender = text;
+                            });
+                            print('gender is $gender');
+                          })),
                   Row(
                     children: [
                       Text("Female"),
@@ -343,27 +362,92 @@ class _signupmodState extends State<signupmod> {
                   SizedBox(height: 20),
                   Row(
                     children: [
-                      Text('your your Cv'),
+                      Text('your Cv'),
                     ],
                   ),
+                  ElevatedButton(
+                      onPressed: () async {
+                        FilePickerResult? result =
+                            await FilePicker.platform.pickFiles();
+
+                        if (result != null) {
+                          File cv = File(result.files.single.path!);
+                        } else {
+                          // User canceled the picker
+                        }
+                      },
+                      child: Column(
+                        children: [Icon(Icons.upload_file), Text('upload Cv')],
+                      )),
                   SizedBox(height: 20),
                   Row(
                     children: [
-                      Text('your your Degree'),
+                      Text('your Degree'),
                     ],
                   ),
+                  ElevatedButton(
+                      onPressed: () async {
+                        FilePickerResult? result =
+                            await FilePicker.platform.pickFiles();
+
+                        if (result != null) {
+                          File degree = File(result.files.single.path!);
+                        } else {
+                          // User canceled the picker
+                        }
+                      },
+                      child: Column(
+                        children: [
+                          Icon(Icons.upload_file),
+                          Text('upload degree')
+                        ],
+                      )),
                   SizedBox(height: 20),
                   Row(
                     children: [
-                      Text('your your experience province'),
+                      Text('your experience province'),
                     ],
                   ),
+                  ElevatedButton(
+                      onPressed: () async {
+                        FilePickerResult? result =
+                            await FilePicker.platform.pickFiles();
+
+                        if (result != null) {
+                          File experience = File(result.files.single.path!);
+                        } else {
+                          // User canceled the picker
+                        }
+                      },
+                      child: Column(
+                        children: [
+                          Icon(Icons.upload_file),
+                          Text('upload experience proove')
+                        ],
+                      )),
                   SizedBox(height: 20),
                   Row(
                     children: [
-                      Text('your your identify card'),
+                      Text('your identify card'),
                     ],
                   ),
+                  ElevatedButton(
+                      onPressed: () async {
+                        FilePickerResult? result =
+                            await FilePicker.platform.pickFiles();
+
+                        if (result != null) {
+                          File identity = File(result.files.single.path!);
+                        } else {
+                          // User canceled the picker
+                        }
+                      },
+                      child: Column(
+                        children: [
+                          Icon(Icons.upload_file),
+                          Text('upload identity')
+                        ],
+                      )),
                   SizedBox(height: 20),
                   Row(
                     children: [
