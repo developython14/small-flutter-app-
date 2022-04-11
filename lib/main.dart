@@ -18,6 +18,6 @@ void main() {
         '/intro': (context) => toma(),
         '/wait': (context) => wait(),
         '/free': (context) => univs(),
-        '/test': (context) => belk(),
+        '/test': (context) => MyHomePage(title: 'Flutter Multi Select'),
       }));
 }
