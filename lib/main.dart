@@ -8,16 +8,13 @@ import 'package:mustapha/signup_pages/signup_mod.dart';
 import 'package:mustapha/test.dart';
 
 void main() {
-  runApp(MaterialApp(
-      title: 'Mustapha Hacker',
-      initialRoute: '/signupmod',
-      routes: {
-        '/login': (context) => login(),
-        '/signup': (context) => signup(),
-        '/signupmod': (context) => signupmod(),
-        '/intro': (context) => toma(),
-        '/wait': (context) => wait(),
-        '/free': (context) => univs(),
-        '/test': (context) => MyHomePage(title: 'Flutter Multi Select'),
-      }));
+  runApp(MaterialApp(title: 'Mustapha Hacker', initialRoute: '/test', routes: {
+    '/login': (context) => login(),
+    '/signup': (context) => signup(),
+    '/signupmod': (context) => signupmod(),
+    '/intro': (context) => toma(),
+    '/wait': (context) => wait(),
+    '/free': (context) => univs(),
+    '/test': (context) => MyHomePage(title: 'Flutter Multi Select'),
+  }));
 }
