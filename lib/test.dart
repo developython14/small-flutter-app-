@@ -39,9 +39,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   static List<Service> _services = [Service(id: 1, name: 'mustapha')];
-  final _items = _services
-      .map((service) => MultiSelectItem<Service>(service, service.name))
-      .toList();
   List<Service> _selectedAnimals2 = [];
   final _multiSelectKey = GlobalKey<FormFieldState>();
 
@@ -63,7 +60,6 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     getdataserives();
-    _selectedAnimals2 = _services;
     super.initState();
   }
 
@@ -103,9 +99,12 @@ class _MyHomePageState extends State<MyHomePage> {
                       searchable: true,
                       buttonText: Text("Services Provided:"),
                       title: Text("Services"),
-                      items: _items,
+                      items: _services
+                          .map((service) =>
+                              MultiSelectItem<Service>(service, service.name))
+                          .toList(),
                       onConfirm: (values) {
-                        print(_selectedAnimals2);
+                        _selectedAnimals2 = values;
                       },
                       chipDisplay: MultiSelectChipDisplay(
                         onTap: (value) {
